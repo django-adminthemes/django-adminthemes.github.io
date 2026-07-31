@@ -544,9 +544,6 @@
           <button class="filter-tab" data-category="apps">
             🚀 Aplicações (<span id="countApps">0</span>)
           </button>
-          <button class="filter-tab" data-category="meta">
-            📄 Meta (<span id="countMeta">0</span>)
-          </button>
         </div>
       </div>
     </section>
@@ -824,31 +821,6 @@
         </div>
       </article>
 
-      <!-- 11. PROFILE METADATA -->
-      <article class="repo-card" data-category="meta" data-search=".github profile organizacao readme django-by-kelsoncm">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">📄</span>
-              <h2 class="card-title">.github (Profile Org)</h2>
-            </div>
-            <span class="card-category-badge">Meta / Org</span>
-          </div>
-          <p class="card-desc">
-            Repositório institucional de perfil da organização <code>django-by-kelsoncm</code> no GitHub com o README oficial.
-          </p>
-          <div class="card-tags">
-            <span class="tag">GitHub Profile</span>
-            <span class="tag">Meta</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/.github" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
-
     </div>
   </main>
 
@@ -901,7 +873,7 @@
 
       // Update Counts
       function updateCounts() {
-        const counts = { all: cards.length, admin: 0, auth: 0, engine: 0, apps: 0, meta: 0 };
+        const counts = { all: cards.length, admin: 0, auth: 0, engine: 0, apps: 0 };
         cards.forEach(card => {
           const cat = card.getAttribute('data-category');
           if (counts[cat] !== undefined) { counts[cat]++; }
@@ -911,7 +883,6 @@
         document.getElementById('countAuth').textContent = counts.auth;
         document.getElementById('countEngine').textContent = counts.engine;
         document.getElementById('countApps').textContent = counts.apps;
-        document.getElementById('countMeta').textContent = counts.meta;
       }
       updateCounts();
 

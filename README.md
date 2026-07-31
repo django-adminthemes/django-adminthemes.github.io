@@ -7,6 +7,5 @@ Site institucional e portal hub de repositórios da organização **django-by-ke
 - **Autenticação & SSO**: `django-auth-govbr`, `django-auth-sabia`, `django-auth-suap`, `moodle-auth_neesgov`
 - **Core & Engines**: `django-rule-engine`, `django-wrapper-moodle`
 - **Aplicações**: `django-project-processo-seletivo`
-- **Meta / Perfil**: `.github`
 
 Acesse o portal em: [https://django-by-kelsoncm.github.io](https://django-by-kelsoncm.github.io)
