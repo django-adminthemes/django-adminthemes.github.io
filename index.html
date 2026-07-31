@@ -25,7 +25,7 @@
       --text-base: clamp(1rem,     0.95rem + 0.25vw, 1.125rem);
       --text-lg:   clamp(1.125rem, 1rem    + 0.75vw, 1.35rem);
       --text-xl:   clamp(1.5rem,   1.2rem  + 1.25vw, 2.25rem);
-      --text-2xl:  clamp(2rem,     1.2rem  + 2.5vw,  3rem);
+      --text-2xl:  clamp(1.85rem,  1.2rem  + 2vw,    2.75rem);
       --text-3xl:  clamp(2.5rem,   1rem    + 4vw,    4rem);
       
       --space-1: 0.25rem; --space-2: 0.5rem; --space-3: 0.75rem;
@@ -56,7 +56,7 @@
       --shadow-md: 0 6px 18px rgba(0,0,0,0.4);
       --shadow-lg: 0 16px 36px rgba(0,0,0,0.5);
       
-      --content-narrow: 720px; --content-default: 1080px; --content-wide: 1280px;
+      --content-narrow: 720px; --content-default: 1080px; --content-wide: 1200px;
       --font-display: 'Cabinet Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-body: 'Satoshi', -apple-system, BlinkMacSystemFont, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, monospace;
@@ -168,7 +168,7 @@
       gap: var(--space-3);
     }
 
-    .theme-toggle, .btn-secondary, .btn-primary {
+    .theme-toggle, .btn-secondary {
       display: inline-flex;
       align-items: center;
       gap: var(--space-2);
@@ -193,15 +193,6 @@
       border-color: var(--color-primary);
     }
 
-    .btn-primary {
-      background: var(--color-primary);
-      color: var(--color-text-inverse);
-    }
-
-    .btn-primary:hover {
-      background: var(--color-primary-hover);
-    }
-
     .btn-secondary {
       background: var(--color-surface-2);
       color: var(--color-text);
@@ -215,7 +206,7 @@
 
     /* HERO */
     .hero {
-      padding: var(--space-16) 0 var(--space-12);
+      padding: var(--space-12) 0 var(--space-8);
       text-align: center;
     }
 
@@ -252,18 +243,11 @@
       color: var(--color-text-muted);
     }
 
-    /* CONTROLS & FILTERS */
-    .controls-wrapper {
-      margin-bottom: var(--space-10);
-      display: flex;
-      flex-direction: column;
-      gap: var(--space-6);
-    }
-
+    /* SEARCH BAR */
     .search-box {
       position: relative;
-      max-width: 560px;
-      margin: 0 auto;
+      max-width: 600px;
+      margin: 0 auto var(--space-12);
       width: 100%;
     }
 
@@ -294,47 +278,58 @@
       box-shadow: 0 0 0 3px var(--color-primary-highlight);
     }
 
-    .filter-tabs {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: var(--space-2);
-    }
-
-    .filter-tab {
-      background: var(--color-surface-2);
-      color: var(--color-text-muted);
-      border: 1px solid var(--color-border);
-      padding: var(--space-2) var(--space-4);
-      border-radius: var(--radius-full);
-      font-size: var(--text-xs);
-      font-weight: 600;
-      cursor: pointer;
-      transition: var(--transition-interactive);
-      display: inline-flex;
-      align-items: center;
-      gap: var(--space-2);
-    }
-
-    .filter-tab:hover {
-      color: var(--color-text);
-      border-color: var(--color-text-muted);
-    }
-
-    .filter-tab.active {
-      background: var(--color-primary);
-      color: var(--color-text-inverse);
-      border-color: var(--color-primary);
-    }
-
-    /* GRID & CARDS */
-    .repo-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: var(--space-6);
+    /* SECTIONS */
+    .category-section {
       margin-bottom: var(--space-16);
     }
 
+    .section-intro {
+      margin-bottom: var(--space-6);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--color-divider);
+    }
+
+    .section-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--text-xs);
+      font-weight: 700;
+      color: var(--color-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: var(--space-2);
+    }
+
+    .section-title {
+      font-family: var(--font-display);
+      font-size: var(--text-2xl);
+      font-weight: 800;
+      color: var(--color-text);
+      margin-bottom: var(--space-2);
+    }
+
+    .section-desc {
+      color: var(--color-text-muted);
+      font-size: var(--text-base);
+      max-width: 860px;
+      line-height: 1.6;
+    }
+
+    /* GRID: 2 CARDS PER ROW */
+    .section-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-6);
+    }
+
+    @media (max-width: 860px) {
+      .section-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* CARD STYLING */
     .repo-card {
       background: var(--color-surface);
       border: 1px solid var(--color-border);
@@ -344,17 +339,28 @@
       flex-direction: column;
       justify-content: space-between;
       transition: var(--transition-interactive);
-      position: relative;
     }
 
     .repo-card:hover {
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       box-shadow: var(--shadow-md);
       border-color: var(--color-primary);
     }
 
-    .card-top {
-      margin-bottom: var(--space-6);
+    /* THUMBNAIL CONTAINER FOR THEMES */
+    .card-thumbnail {
+      width: 100%;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      margin-bottom: var(--space-4);
+      border: 1px solid var(--color-border);
+      background: var(--color-surface-2);
+    }
+
+    .card-thumbnail svg {
+      display: block;
+      width: 100%;
+      height: auto;
     }
 
     .card-header {
@@ -381,18 +387,7 @@
       font-size: var(--text-lg);
       font-weight: 700;
       color: var(--color-text);
-      line-height: 1.2;
-    }
-
-    .card-category-badge {
-      font-size: 0.7rem;
-      padding: var(--space-1) var(--space-2);
-      border-radius: var(--radius-sm);
-      background: var(--color-surface-2);
-      color: var(--color-text-muted);
-      border: 1px solid var(--color-divider);
-      white-space: nowrap;
-      font-weight: 600;
+      line-height: 1.25;
     }
 
     .card-desc {
@@ -405,17 +400,18 @@
     .card-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: var(--space-1);
-      margin-bottom: var(--space-2);
+      gap: var(--space-2);
+      margin-bottom: var(--space-4);
     }
 
     .tag {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       background: var(--color-surface-offset);
       color: var(--color-text-muted);
-      padding: 0.15rem 0.5rem;
+      padding: 0.2rem 0.55rem;
       border-radius: var(--radius-sm);
       font-family: var(--font-mono);
+      border: 1px solid var(--color-divider);
     }
 
     .card-bottom {
@@ -425,6 +421,7 @@
       align-items: center;
       justify-content: space-between;
       gap: var(--space-3);
+      margin-top: auto;
     }
 
     .repo-link {
@@ -435,7 +432,7 @@
       display: inline-flex;
       align-items: center;
       gap: 0.35rem;
-      padding: var(--space-2) var(--space-3);
+      padding: var(--space-2) var(--space-4);
       border-radius: var(--radius-md);
       background: var(--color-primary-highlight);
       transition: var(--transition-interactive);
@@ -459,13 +456,6 @@
     .docs-link:hover {
       color: var(--color-text);
       text-decoration: underline;
-    }
-
-    .no-results {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: var(--space-16) var(--space-4);
-      color: var(--color-text-muted);
     }
 
     /* FOOTER */
@@ -500,7 +490,7 @@
       <div class="nav-actions">
         <button class="theme-toggle" id="themeToggleBtn" aria-label="Alternar Tema">
           <i data-lucide="sun" id="themeIcon"></i>
-          <span id="themeLabel">Modo</span>
+          <span id="themeLabel">Escuro</span>
         </button>
         <a href="https://github.com/django-by-kelsoncm" target="_blank" rel="noopener" class="btn-secondary">
           <i data-lucide="github"></i> GitHub Org
@@ -521,307 +511,414 @@
         Uma suíte completa de repositórios open source desenvolvida para acelerar a criação de aplicações web em Django: temas administrativos, autenticação SSO (Gov.br, SUAP, Sabiá), motor de regras e integrações.
       </p>
 
-      <!-- CONTROLS & SEARCH -->
-      <div class="controls-wrapper">
-        <div class="search-box">
-          <i data-lucide="search"></i>
-          <input type="text" id="searchInput" class="search-input" placeholder="Buscar subprojeto por nome, palavra-chave ou tecnologia..." aria-label="Buscar subprojeto" />
-        </div>
-
-        <div class="filter-tabs" id="filterTabs">
-          <button class="filter-tab active" data-category="all">
-            <i data-lucide="layers"></i> Todos (<span id="countAll">0</span>)
-          </button>
-          <button class="filter-tab" data-category="admin">
-            🎨 Temas Admin (<span id="countAdmin">0</span>)
-          </button>
-          <button class="filter-tab" data-category="auth">
-            🔐 Autenticação & SSO (<span id="countAuth">0</span>)
-          </button>
-          <button class="filter-tab" data-category="engine">
-            ⚙️ Core & Engines (<span id="countEngine">0</span>)
-          </button>
-          <button class="filter-tab" data-category="apps">
-            🚀 Aplicações (<span id="countApps">0</span>)
-          </button>
-        </div>
+      <!-- SEARCH BAR -->
+      <div class="search-box">
+        <i data-lucide="search"></i>
+        <input type="text" id="searchInput" class="search-input" placeholder="Buscar projeto em todas as seções por nome, palavra-chave ou tecnologia..." aria-label="Buscar projeto" />
       </div>
     </section>
 
-    <!-- REPO GRID -->
-    <div class="repo-grid" id="repoGrid">
-      
-      <!-- 1. ADMINLTE3 -->
-      <article class="repo-card" data-category="admin" data-search="django-admintheme-adminlte3 adminlte3 tema admin interface dashboard">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🎨</span>
-              <h2 class="card-title">django-admintheme-adminlte3</h2>
-            </div>
-            <span class="card-category-badge">Tema Admin</span>
-          </div>
-          <p class="card-desc">
-            Tema elegante e responsivo para o Django Admin baseado no AdminLTE 3 com menu expansível, barra de busca e visual customizável.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">AdminLTE 3</span>
-            <span class="tag">Admin Theme</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-admintheme-adminlte3" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-          <a href="https://django-by-kelsoncm.github.io/django-admintheme-adminlte3/" target="_blank" rel="noopener" class="docs-link">
-            Documentação <i data-lucide="arrow-up-right"></i>
-          </a>
-        </div>
-      </article>
+    <!-- SEÇÃO 1: TEMAS ADMIN -->
+    <section class="category-section" id="admin-themes">
+      <div class="section-intro">
+        <div class="section-badge"><i data-lucide="palette"></i> Temas de Administração</div>
+        <h2 class="section-title">🎨 Temas para Django Admin</h2>
+        <p class="section-desc">
+          Customizações visuais e estruturais para a interface administrativa nativa do Django. Nossos temas transformam a experiência de uso adicionando navegação responsiva moderna, dashboards, buscas globais e conformidade com padrões oficiais de design como o DSGovBR.
+        </p>
+      </div>
 
-      <!-- 2. DSGOVBR -->
-      <article class="repo-card" data-category="admin" data-search="django-admintheme-dsgovbr dsgovbr governo federal design system tema admin">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🏛️</span>
-              <h2 class="card-title">django-admintheme-dsgovbr</h2>
-            </div>
-            <span class="card-category-badge">Tema Admin</span>
-          </div>
-          <p class="card-desc">
-            Integração nativa do Design System do Governo Federal Brasileiro (DSGovBR / Padrão Digital) com o Django Admin e formulários.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">DSGovBR</span>
-            <span class="tag">Governo Federal</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-admintheme-dsgovbr" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-          <a href="https://django-by-kelsoncm.github.io/django-admintheme-dsgovbr/" target="_blank" rel="noopener" class="docs-link">
-            Documentação <i data-lucide="arrow-up-right"></i>
-          </a>
-        </div>
-      </article>
+      <div class="section-grid">
+        <!-- 1. ADMINLTE3 -->
+        <article class="repo-card" data-search="django-admintheme-adminlte3 adminlte3 tema admin interface dashboard visual">
+          <div>
+            <!-- THUMBNAIL PLACEHOLDER SVG -->
+            <div class="card-thumbnail">
+              <svg viewBox="0 0 400 210" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" aria-label="Thumbnail Preview AdminLTE 3">
+                <rect width="400" height="210" rx="8" fill="#131924" />
+                <!-- Header bar -->
+                <rect width="400" height="32" fill="#1c2536" />
+                <circle cx="20" cy="16" r="4" fill="#38bdf8" />
+                <rect x="36" y="12" width="60" height="8" rx="4" fill="#38bdf8" opacity="0.9" />
+                <rect x="290" y="10" width="90" height="12" rx="6" fill="#2a384e" />
+                <!-- Sidebar -->
+                <rect y="32" width="100" height="178" fill="#162030" />
+                <rect x="12" y="46" width="76" height="12" rx="4" fill="#38bdf8" opacity="0.85" />
+                <rect x="12" y="66" width="65" height="8" rx="3" fill="#64748b" />
+                <rect x="12" y="82" width="70" height="8" rx="3" fill="#64748b" />
+                <rect x="12" y="98" width="55" height="8" rx="3" fill="#64748b" />
+                <rect x="12" y="114" width="72" height="8" rx="3" fill="#64748b" />
+                <!-- Content Header -->
+                <rect x="116" y="46" width="160" height="14" rx="4" fill="#e2e8f0" />
+                <!-- Metric Cards -->
+                <rect x="116" y="72" width="80" height="42" rx="6" fill="#1c2536" stroke="#2a384e" stroke-width="1" />
+                <rect x="124" y="80" width="40" height="8" rx="2" fill="#38bdf8" />
+                <rect x="124" y="94" width="50" height="12" rx="2" fill="#e2e8f0" />
 
-      <!-- 3. SANDBOX -->
-      <article class="repo-card" data-category="admin" data-search="django-admintheme-sandbox sandbox demo playground temas admin">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🧪</span>
-              <h2 class="card-title">django-admintheme-sandbox</h2>
-            </div>
-            <span class="card-category-badge">Sandbox / Demo</span>
-          </div>
-          <p class="card-desc">
-            Ambiente playground e aplicação de demonstração dos temas Django Admin (AdminLTE3 e DSGovBR) pré-configurado com dados de exemplo.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">Sandbox</span>
-            <span class="tag">Demo</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-admintheme-sandbox" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
+                <rect x="204" y="72" width="80" height="42" rx="6" fill="#1c2536" stroke="#2a384e" stroke-width="1" />
+                <rect x="212" y="80" width="40" height="8" rx="2" fill="#34d399" />
+                <rect x="212" y="94" width="50" height="12" rx="2" fill="#e2e8f0" />
 
-      <!-- 4. AUTH GOVBR -->
-      <article class="repo-card" data-category="auth" data-search="django-auth-govbr govbr sso oauth2 openid login unico governo autenticacao">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🔐</span>
-              <h2 class="card-title">django-auth-govbr</h2>
-            </div>
-            <span class="card-category-badge">Autenticação SSO</span>
-          </div>
-          <p class="card-desc">
-            Pacote de autenticação Django para integração SSO via Gov.br (OAuth2 / OpenID Connect) com mapeamento customizado de atributos de usuário.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">Gov.br</span>
-            <span class="tag">OAuth2</span>
-            <span class="tag">SSO</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-auth-govbr" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
+                <rect x="292" y="72" width="94" height="42" rx="6" fill="#1c2536" stroke="#2a384e" stroke-width="1" />
+                <rect x="300" y="80" width="40" height="8" rx="2" fill="#fbbf24" />
+                <rect x="300" y="94" width="50" height="12" rx="2" fill="#e2e8f0" />
 
-      <!-- 5. AUTH SABIA -->
-      <article class="repo-card" data-category="auth" data-search="django-auth-sabia sabia sso autenticacao login django-sabia-auth">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🐦</span>
-              <h2 class="card-title">django-auth-sabia</h2>
+                <!-- Table Preview -->
+                <rect x="116" y="126" width="270" height="72" rx="6" fill="#1c2536" stroke="#2a384e" stroke-width="1" />
+                <rect x="126" y="136" width="250" height="10" rx="3" fill="#2a384e" />
+                <rect x="126" y="152" width="250" height="8" rx="3" fill="#162030" />
+                <rect x="126" y="166" width="200" height="8" rx="3" fill="#162030" />
+                <rect x="126" y="180" width="220" height="8" rx="3" fill="#162030" />
+              </svg>
             </div>
-            <span class="card-category-badge">Autenticação SSO</span>
-          </div>
-          <p class="card-desc">
-            Módulo de integração de autenticação Single Sign-On (SSO) para aplicações Django com a plataforma e ecossistema Sabiá.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">Sabiá</span>
-            <span class="tag">SSO</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-auth-sabia" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
 
-      <!-- 6. AUTH SUAP -->
-      <article class="repo-card" data-category="auth" data-search="django-auth-suap suap sso autenticacao institutos federais ifrn">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🏫</span>
-              <h2 class="card-title">django-auth-suap</h2>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🎨</span>
+                <h3 class="card-title">django-admintheme-adminlte3</h3>
+              </div>
             </div>
-            <span class="card-category-badge">Autenticação SSO</span>
-          </div>
-          <p class="card-desc">
-            Integração de autenticação SSO via OAuth2 com o SUAP (Sistema Unificado de Administração Pública dos Institutos Federais).
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">SUAP</span>
-            <span class="tag">OAuth2</span>
-            <span class="tag">IFRN</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-auth-suap" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
-
-      <!-- 7. MOODLE AUTH NEESGOV -->
-      <article class="repo-card" data-category="auth" data-search="moodle-auth_neesgov moodle govbr sso plugin nees php">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🎓</span>
-              <h2 class="card-title">moodle-auth_neesgov</h2>
+            <p class="card-desc">
+              Tema elegante e completo baseado no consagrado AdminLTE 3 adaptado nativamente para o Django Admin com menu expansível, barra de busca global e componentes visuais modernos.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">AdminLTE 3</span>
+              <span class="tag">Admin Theme</span>
             </div>
-            <span class="card-category-badge">Plugin Moodle</span>
           </div>
-          <p class="card-desc">
-            Plugin de autenticação para Moodle que viabiliza Single Sign-On (SSO) com Gov.br em plataformas de ensino online.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Moodle</span>
-            <span class="tag">PHP</span>
-            <span class="tag">Gov.br</span>
-            <span class="tag">NEES</span>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-admintheme-adminlte3" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+            <a href="https://django-by-kelsoncm.github.io/django-admintheme-adminlte3/" target="_blank" rel="noopener" class="docs-link">
+              Documentação <i data-lucide="arrow-up-right"></i>
+            </a>
           </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/srssaulo/moodle-auth_neesgov" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
+        </article>
 
-      <!-- 8. RULE ENGINE -->
-      <article class="repo-card" data-category="engine" data-search="django-rule-engine rule engine motor regras acesso eligibilidade regras de negocio">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">⚙️</span>
-              <h2 class="card-title">django-rule-engine</h2>
+        <!-- 2. DSGOVBR -->
+        <article class="repo-card" data-search="django-admintheme-dsgovbr dsgovbr governo federal design system tema admin padrao digital">
+          <div>
+            <!-- THUMBNAIL PLACEHOLDER SVG -->
+            <div class="card-thumbnail">
+              <svg viewBox="0 0 400 210" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" aria-label="Thumbnail Preview DSGovBR">
+                <rect width="400" height="210" rx="8" fill="#131924" />
+                <!-- Header Gov.br style -->
+                <rect width="400" height="36" fill="#0c326f" />
+                <rect x="16" y="10" width="70" height="16" rx="3" fill="#ffffff" opacity="0.9" />
+                <rect x="280" y="12" width="100" height="12" rx="6" fill="#155bcb" />
+                <!-- Breadcrumb -->
+                <rect x="16" y="48" width="120" height="8" rx="2" fill="#64748b" />
+                <!-- Main Header -->
+                <rect x="16" y="64" width="220" height="16" rx="4" fill="#e2e8f0" />
+                <!-- Form Box DSGovBR Style -->
+                <rect x="16" y="92" width="368" height="106" rx="6" fill="#1c2536" stroke="#2a384e" stroke-width="1" />
+                <rect x="32" y="106" width="100" height="8" rx="2" fill="#38bdf8" />
+                <rect x="32" y="120" width="336" height="22" rx="4" fill="#162030" stroke="#2a384e" stroke-width="1" />
+
+                <rect x="32" y="152" width="80" height="8" rx="2" fill="#38bdf8" />
+                <rect x="32" y="166" width="150" height="22" rx="4" fill="#162030" stroke="#2a384e" stroke-width="1" />
+
+                <rect x="290" y="166" width="78" height="22" rx="11" fill="#155bcb" />
+              </svg>
             </div>
-            <span class="card-category-badge">Core Engine</span>
-          </div>
-          <p class="card-desc">
-            Motor declarativo de regras de negócio para Django, ideal para avaliação de elegibilidade, descontos, coortes e permissões dinâmicas.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">Rule Engine</span>
-            <span class="tag">Python</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-rule-engine" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
 
-      <!-- 9. WRAPPER MOODLE -->
-      <article class="repo-card" data-category="engine" data-search="django-wrapper-moodle moodle wrapper orm integracao banco de dados">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">📦</span>
-              <h2 class="card-title">django-wrapper-moodle</h2>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🏛️</span>
+                <h3 class="card-title">django-admintheme-dsgovbr</h3>
+              </div>
             </div>
-            <span class="card-category-badge">ORM Wrapper</span>
-          </div>
-          <p class="card-desc">
-            Wrapper ORM Django para conexão, leitura e integração direta com tabelas e estruturas do banco de dados Moodle.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">Moodle</span>
-            <span class="tag">ORM</span>
-          </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-wrapper-moodle" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
-
-      <!-- 10. PROCESSO SELETIVO -->
-      <article class="repo-card" data-category="apps" data-search="django-project-processo-seletivo processo seletivo prosel celery postgresql inscricoes web app">
-        <div class="card-top">
-          <div class="card-header">
-            <div class="card-title-group">
-              <span class="card-icon">🚀</span>
-              <h2 class="card-title">django-project-processo-seletivo</h2>
+            <p class="card-desc">
+              Integração oficial e acessível do Design System do Governo Federal Brasileiro (DSGovBR / Padrão Digital de Governo) com a interface do Django Admin e formulários.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">DSGovBR</span>
+              <span class="tag">Governo Federal</span>
+              <span class="tag">Acessibilidade</span>
             </div>
-            <span class="card-category-badge">Aplicação Web</span>
           </div>
-          <p class="card-desc">
-            Sistema completo em Django + Celery para gestão de processos seletivos, inscrições, recursos e resultados, integrado com Gov.br e SUAP.
-          </p>
-          <div class="card-tags">
-            <span class="tag">Django</span>
-            <span class="tag">Celery</span>
-            <span class="tag">Docker</span>
-            <span class="tag">PostgreSQL</span>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-admintheme-dsgovbr" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+            <a href="https://django-by-kelsoncm.github.io/django-admintheme-dsgovbr/" target="_blank" rel="noopener" class="docs-link">
+              Documentação <i data-lucide="arrow-up-right"></i>
+            </a>
           </div>
-        </div>
-        <div class="card-bottom">
-          <a href="https://github.com/django-by-kelsoncm/django-project-processo-seletivo" target="_blank" rel="noopener" class="repo-link">
-            GitHub <i data-lucide="external-link"></i>
-          </a>
-        </div>
-      </article>
+        </article>
 
-    </div>
+        <!-- 3. SANDBOX -->
+        <article class="repo-card" data-search="django-admintheme-sandbox sandbox demo playground temas admin teste">
+          <div>
+            <!-- THUMBNAIL PLACEHOLDER SVG -->
+            <div class="card-thumbnail">
+              <svg viewBox="0 0 400 210" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg" aria-label="Thumbnail Preview Sandbox">
+                <rect width="400" height="210" rx="8" fill="#131924" />
+                <rect width="400" height="32" fill="#1c2536" />
+                <circle cx="20" cy="16" r="4" fill="#fbbf24" />
+                <rect x="36" y="12" width="90" height="8" rx="4" fill="#fbbf24" opacity="0.9" />
+                <!-- Grid of split preview -->
+                <rect x="16" y="48" width="176" height="146" rx="6" fill="#162030" stroke="#2a384e" stroke-width="1" />
+                <rect x="28" y="60" width="100" height="10" rx="3" fill="#38bdf8" />
+                <rect x="28" y="78" width="152" height="40" rx="4" fill="#1c2536" />
+                <rect x="28" y="126" width="152" height="54" rx="4" fill="#1c2536" />
+
+                <rect x="208" y="48" width="176" height="146" rx="6" fill="#162030" stroke="#2a384e" stroke-width="1" />
+                <rect x="220" y="60" width="100" height="10" rx="3" fill="#34d399" />
+                <rect x="220" y="78" width="152" height="40" rx="4" fill="#1c2536" />
+                <rect x="220" y="126" width="152" height="54" rx="4" fill="#1c2536" />
+              </svg>
+            </div>
+
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🧪</span>
+                <h3 class="card-title">django-admintheme-sandbox</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Aplicação Sandbox / Playground para testar, visualizar e demonstrar os temas de administração Django (AdminLTE3 e DSGovBR) pré-configurada com dados de exemplo.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">Sandbox</span>
+              <span class="tag">Playground</span>
+              <span class="tag">Demo</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-admintheme-sandbox" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 2: AUTENTICAÇÃO & SSO -->
+    <section class="category-section" id="auth-sso">
+      <div class="section-intro">
+        <div class="section-badge"><i data-lucide="shield-check"></i> Autenticação & Identidade</div>
+        <h2 class="section-title">🔐 Autenticação & Single Sign-On (SSO)</h2>
+        <p class="section-desc">
+          Módulos de autenticação e identificação de usuários integrados a provedores e plataformas governamentais e educacionais. Simplificam a implementação de login único (OAuth2 / OpenID Connect) com suporte flexível a Gov.br, SUAP, Sabiá e Moodle.
+        </p>
+      </div>
+
+      <div class="section-grid">
+        <!-- 4. AUTH GOVBR -->
+        <article class="repo-card" data-search="django-auth-govbr govbr sso oauth2 openid login unico governo autenticacao">
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🔐</span>
+                <h3 class="card-title">django-auth-govbr</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Pacote de autenticação Django para integração SSO via Gov.br (OAuth2 / OpenID Connect) com mapeamento customizável de atributos de usuário, tokens JWT e callbacks.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">Gov.br</span>
+              <span class="tag">OAuth2</span>
+              <span class="tag">OpenID Connect</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-auth-govbr" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- 5. AUTH SABIA -->
+        <article class="repo-card" data-search="django-auth-sabia sabia sso autenticacao login django-sabia-auth">
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🐦</span>
+                <h3 class="card-title">django-auth-sabia</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Módulo de integração de autenticação Single Sign-On (SSO) para aplicações Django com a plataforma e ecossistema de serviços Sabiá.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">Sabiá</span>
+              <span class="tag">SSO</span>
+              <span class="tag">Auth</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-auth-sabia" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- 6. AUTH SUAP -->
+        <article class="repo-card" data-search="django-auth-suap suap sso autenticacao institutos federais ifrn">
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🏫</span>
+                <h3 class="card-title">django-auth-suap</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Integração de autenticação SSO via OAuth2 com o SUAP (Sistema Unificado de Administração Pública dos Institutos Federais) para projetos Django.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">SUAP</span>
+              <span class="tag">OAuth2</span>
+              <span class="tag">IFRN</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-auth-suap" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- 7. MOODLE AUTH NEESGOV -->
+        <article class="repo-card" data-search="moodle-auth_neesgov moodle govbr sso plugin nees php">
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🎓</span>
+                <h3 class="card-title">moodle-auth_neesgov</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Plugin de autenticação para Moodle que viabiliza Single Sign-On (SSO) com Gov.br em ambientes virtuais de aprendizagem (parceria NEES/Gov.br).
+            </p>
+            <div class="card-tags">
+              <span class="tag">Moodle</span>
+              <span class="tag">PHP</span>
+              <span class="tag">Gov.br</span>
+              <span class="tag">NEES</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/srssaulo/moodle-auth_neesgov" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 3: CORE & ENGINE -->
+    <section class="category-section" id="core-engines">
+      <div class="section-intro">
+        <div class="section-badge"><i data-lucide="cpu"></i> Regras & Integração</div>
+        <h2 class="section-title">⚙️ Core & Motores de Regras</h2>
+        <p class="section-desc">
+          Bibliotecas essenciais para regras de negócio declarativas e integração de dados. Permitem definir motores de regras flexíveis (elegibilidade, permissões, coortes e validações dinâmicas) e conectar o ORM do Django à infraestrutura do Moodle.
+        </p>
+      </div>
+
+      <div class="section-grid">
+        <!-- 8. RULE ENGINE -->
+        <article class="repo-card" data-search="django-rule-engine rule engine motor regras acesso eligibilidade regras de negocio">
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">⚙️</span>
+                <h3 class="card-title">django-rule-engine</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Motor declarativo de regras de negócio para Django, ideal para avaliação flexível de elegibilidade, descontos, coortes, regras de acesso e validações dinâmicas.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">Rule Engine</span>
+              <span class="tag">Python</span>
+              <span class="tag">Core</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-rule-engine" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- 9. WRAPPER MOODLE -->
+        <article class="repo-card" data-search="django-wrapper-moodle moodle wrapper orm integracao banco de dados">
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">📦</span>
+                <h3 class="card-title">django-wrapper-moodle</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Wrapper ORM Django para conexão, leitura e integração direta com tabelas e estruturas do banco de dados Moodle em aplicações Python.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">Moodle</span>
+              <span class="tag">ORM</span>
+              <span class="tag">Wrapper</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-wrapper-moodle" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- SEÇÃO 4: APLICAÇÕES WEB -->
+    <section class="category-section" id="applications">
+      <div class="section-intro">
+        <div class="section-badge"><i data-lucide="layout"></i> Aplicações Práticas</div>
+        <h2 class="section-title">🚀 Aplicações Web</h2>
+        <p class="section-desc">
+          Sistemas web completos prontos para produção construídos com a pilha tecnológica do ecossistema. Demonstram na prática o uso integrado de temas, autenticação SSO via Gov.br e SUAP, tarefas assíncronas com Celery e PostgreSQL.
+        </p>
+      </div>
+
+      <div class="section-grid">
+        <!-- 10. PROCESSO SELETIVO -->
+        <article class="repo-card" data-search="django-project-processo-seletivo processo seletivo prosel celery postgresql inscricoes web app">
+          <div>
+            <div class="card-header">
+              <div class="card-title-group">
+                <span class="card-icon">🚀</span>
+                <h3 class="card-title">django-project-processo-seletivo</h3>
+              </div>
+            </div>
+            <p class="card-desc">
+              Sistema web para gestão de processos seletivos, inscrições online, avaliação de recursos e publicação de resultados, com suporte a autenticação Gov.br e integração SUAP.
+            </p>
+            <div class="card-tags">
+              <span class="tag">Django</span>
+              <span class="tag">Celery</span>
+              <span class="tag">Docker</span>
+              <span class="tag">PostgreSQL</span>
+              <span class="tag">REST API</span>
+            </div>
+          </div>
+          <div class="card-bottom">
+            <a href="https://github.com/django-by-kelsoncm/django-project-processo-seletivo" target="_blank" rel="noopener" class="repo-link">
+              GitHub <i data-lucide="external-link"></i>
+            </a>
+          </div>
+        </article>
+      </div>
+    </section>
   </main>
 
   <!-- FOOTER -->
@@ -841,7 +938,6 @@
 
       // Theme toggle
       const themeBtn = document.getElementById('themeToggleBtn');
-      const themeIcon = document.getElementById('themeIcon');
       const themeLabel = document.getElementById('themeLabel');
 
       const savedTheme = localStorage.getItem('theme') || 'dark';
@@ -857,61 +953,39 @@
       });
 
       function updateThemeUI(theme) {
-        if (theme === 'dark') {
-          themeLabel.textContent = 'Escuro';
-        } else {
-          themeLabel.textContent = 'Claro';
-        }
+        themeLabel.textContent = theme === 'dark' ? 'Escuro' : 'Claro';
       }
 
-      // Filtering & Search
+      // Real-time Search across sections
       const searchInput = document.getElementById('searchInput');
-      const filterTabs = document.querySelectorAll('.filter-tab');
       const cards = document.querySelectorAll('.repo-card');
+      const sections = document.querySelectorAll('.category-section');
 
-      let currentCategory = 'all';
-
-      // Update Counts
-      function updateCounts() {
-        const counts = { all: cards.length, admin: 0, auth: 0, engine: 0, apps: 0 };
-        cards.forEach(card => {
-          const cat = card.getAttribute('data-category');
-          if (counts[cat] !== undefined) { counts[cat]++; }
-        });
-        document.getElementById('countAll').textContent = counts.all;
-        document.getElementById('countAdmin').textContent = counts.admin;
-        document.getElementById('countAuth').textContent = counts.auth;
-        document.getElementById('countEngine').textContent = counts.engine;
-        document.getElementById('countApps').textContent = counts.apps;
-      }
-      updateCounts();
-
-      filterTabs.forEach(tab => {
-        tab.addEventListener('click', () => {
-          filterTabs.forEach(t => t.classList.remove('active'));
-          tab.classList.add('active');
-          currentCategory = tab.getAttribute('data-category');
-          applyFilters();
-        });
-      });
-
-      searchInput.addEventListener('input', applyFilters);
-
-      function applyFilters() {
+      searchInput.addEventListener('input', () => {
         const query = searchInput.value.toLowerCase().trim();
 
-        cards.forEach(card => {
-          const categoryMatch = (currentCategory === 'all' || card.getAttribute('data-category') === currentCategory);
-          const searchText = (card.getAttribute('data-search') + ' ' + card.innerText).toLowerCase();
-          const queryMatch = !query || searchText.includes(query);
+        sections.forEach(section => {
+          let visibleCardsInSection = 0;
+          const sectionCards = section.querySelectorAll('.repo-card');
 
-          if (categoryMatch && queryMatch) {
-            card.style.display = 'flex';
+          sectionCards.forEach(card => {
+            const searchText = (card.getAttribute('data-search') + ' ' + card.innerText).toLowerCase();
+            if (!query || searchText.includes(query)) {
+              card.style.display = 'flex';
+              visibleCardsInSection++;
+            } else {
+              card.style.display = 'none';
+            }
+          });
+
+          // Hide empty sections during search
+          if (query && visibleCardsInSection === 0) {
+            section.style.display = 'none';
           } else {
-            card.style.display = 'none';
+            section.style.display = 'block';
           }
         });
-      }
+      });
     });
   </script>
 </body>
